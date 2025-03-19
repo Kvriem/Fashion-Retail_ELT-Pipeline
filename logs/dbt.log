@@ -1,0 +1,29 @@
+[0m21:43:51.456674 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023575EA5480>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000235775C5870>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000235775C5600>]}
+
+
+============================== 21:43:51.476807 | 3c551617-fd8c-486a-b061-ef07443954f0 ==============================
+[0m21:43:51.476807 [info ] [MainThread]: Running with dbt=1.9.3
+[0m21:43:51.476807 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'profiles_dir': 'C:\\Users\\Kariem\\.dbt', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'invocation_command': 'dbt init Finiancial-ELT', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m21:45:00.640694 [debug] [MainThread]: Starter project path: C:\Users\Kariem\Desktop\Financial_Data-Pipeline _DBT\Stock-Financial_Data-Pipeline\venv\lib\site-packages\dbt\include\starter_project
+[0m21:45:00.733962 [info ] [MainThread]: 
+Your new dbt project "Finiancial_ELT" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m21:45:00.736468 [info ] [MainThread]: Setting up your profile.
+[0m22:03:26.888305 [info ] [MainThread]: Profile Finiancial_ELT written to C:\Users\Kariem\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m22:03:26.928172 [debug] [MainThread]: Command `dbt init` succeeded at 22:03:26.923743 after 1175.56 seconds
+[0m22:03:26.947478 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023575EA5480>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000235775C55D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000235775CF760>]}
+[0m22:03:26.964106 [debug] [MainThread]: Flushing usage events
+[0m22:03:27.754012 [debug] [MainThread]: An error was encountered while trying to flush usage events
