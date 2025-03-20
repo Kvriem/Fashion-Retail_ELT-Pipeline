@@ -1,70 +1,82 @@
-# 📊 Stock & Financial Data ELT Pipeline with DBT
+# Global Fashion Retail Sales - Data Warehouse Pipeline
 
-## Overview
-This project implements an **end-to-end ELT pipeline** to extract, load, and transform daily stock price data for the **top 10 global companies** (e.g., AAPL, MSFT, AMZN, GOOGL, etc.) using modern data engineering tools. The pipeline automates data ingestion, cleansing, modeling, and reporting to deliver business-ready insights for **finance teams, traders, and analysts**.
+## 🧩 Project Overview
+
+This project implements an end-to-end data pipeline for a **Global Fashion Retailer**, focusing on cleansing and modeling retail sales data to deliver business-ready insights. The pipeline loads data from multiple CSV sources into a **Snowflake Data Warehouse**, applying a multi-layered approach (Bronze, Silver, Gold) and generating insights via **Power BI**.
 
 ---
 
 ## 🎯 Business Goal
-The objective is to enable financial insights through:
-- **Trend Analysis**: Identify long-term price patterns.
-- **Price Volatility**: Highlight periods of high/low volatility.
-- **Investment Opportunities**: Compare stock performance across companies over time.
+
+- **Objective**: Provide actionable insights to help the business identify sales trends, customer behaviors, and the impact of discounts.
+- **Key Insight**: Business-ready views allow teams to spot high-performing stores, top-selling products, and discount-driven sales patterns.
 
 ---
 
-## 🛠 Tech Stack
+## 📊 Data Sources
 
-| Component          | Technology                      |
-|--------------------|---------------------------------|
-| **Ingestion**      | Python (`yfinance`, `pandas`)   |
-| **Data Warehouse** | Snowflake)                      |
-| **Transformation** | DBT (staging + marts + tests)   |
-| **Orchestration**  | Apache Airflow (Dockerized)     |
-| **Visualization**  | Power BI                        |
+- **CSV Files**:
+  - `Products.csv` - Product details
+  - `Customers.csv` - Customer information 
+  - `Transactions.csv` - Sales transactions 
+  - `Discounts.csv` - Discount codes and values
+  - `Stores.csv` - Store locations and metadata
 
----
-
-## ⚙️ Pipeline Architecture
-
-1. **Source**:  
-   - Extract daily stock data from **Yahoo Finance** using `yfinance`.
-
-2. **Bronze Layer**:  
-   - Raw data is ingested and stored as-is in PostgreSQL.
-
-3. **Silver Layer**:  
-   - Cleanse and standardize the data (handle missing values, normalize date formats, enrich data).
-
-4. **Gold Layer**:  
-   - Business-ready models using DBT (e.g., `fact_stock_prices` table).
-
-5. **Consumption**:  
-   - Power BI dashboards visualize stock performance and trading volume.
+### Data Challenges:
+- Missing or invalid sale prices and customer data
+- Non-standard date formats
+- Duplicate or inconsistent records
+- Unnormalized text fields
 
 ---
 
-## 🗂 Project Structure
+## 🏗️ Data Pipeline Architecture
 
-```plaintext
-.
-├── dags/                         # Airflow DAGs
-│   └── stock_pipeline_dag.py
-├── dbt/                          # DBT project
-│   ├── models/
-│   │   ├── staging/
-│   │   │   └── stg_stock_prices.sql
-│   │   └── marts/
-│   │       └── fact_stock_prices.sql
-│   ├── tests/
-│   │   └── schema_tests.yml
-├── scripts/
-│   └── ingest_stock_data.py      # Python ingestion script (yfinance)
-├── docker-compose.yml            # Docker Compose for Airflow & PostgreSQL
-├── requirements.txt              # Python dependencies
-├── README.md                     # Project documentation
-└── powerbi_dashboard/            # Power BI .pbix file
+### 🔶 Bronze Layer (Raw Data)
+- Load raw CSV data as-is into Snowflake tables.
+- No transformations applied.
 
-```
+### ⚪ Silver Layer (Cleansed Standardized Data)
+- Data cleansing:
+  - Remove duplicates, NULLs, and invalid entries.
+  - Normalize product, customer, and store data.
+  - Standardize discount codes and sale dates.
+- Data enrichment:
+  - Derived columns (e.g., total discount, net sales).
+- Batch load into Snowflake standardized tables.
 
+### 🟡 Gold Layer (Business-Ready Views)
+- Apply business logic:
+  - Integrate datasets across dimensions.
+  - Calculate KPIs (e.g., net revenue, discount impact).
+  - Create aggregated views (star schema).
+- Ready for reporting & analytics.
 
+---
+
+## 🛠️ Tools & Technologies
+
+- **Snowflake**: Cloud Data Warehouse
+- **Apache Airflow**: Orchestration of batch pipelines
+- **Docker**: Containerized Airflow setup
+- **Power BI**: Business Intelligence and Reporting
+- **Python**: ETL scripts and data wrangling
+- **dbt** : Data Build tool
+
+---
+
+## 📅 ETL Process
+
+1. **Ingest**  
+   - CSV ➡ Snowflake Bronze tables via Airflow.
+
+2. **Cleanse & Transform**  
+   - Bronze ➡ Silver (clean, standardize, enrich).
+
+3. **Modeling**  
+   - Silver ➡ Gold (build fact/dim tables and views).
+
+4. **Consume**  
+   - Gold Layer ➡ Power BI dashboards.
+
+---
