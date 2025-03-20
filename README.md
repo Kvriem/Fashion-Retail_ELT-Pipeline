@@ -65,7 +65,7 @@ This project implements an end-to-end data pipeline for a **Global Fashion Retai
 
 ---
 
-## 📅 ETL Process
+## 📅 ELT Process
 
 1. **Ingest**  
    - CSV ➡ Snowflake Bronze tables via Airflow.
